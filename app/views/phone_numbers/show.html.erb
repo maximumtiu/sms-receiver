@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>E164 number:</strong>
+  <%= @phone_number.e164_number %>
+</p>
+
+<p>
+  <strong>Twilio sid:</strong>
+  <%= @phone_number.twilio_sid %>
+</p>
+
+<%= link_to 'Edit', edit_phone_number_path(@phone_number) %> |
+<%= link_to 'Back', phone_numbers_path %>
