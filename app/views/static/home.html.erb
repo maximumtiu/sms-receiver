@@ -1,0 +1,15 @@
+<h1>SMS Receiver</h1>
+
+<p>Use this tool to purchase phone numbers and receive SMS via your Twilio account.</p>
+
+<% if current_user %>
+  <%= link_to 'Add your Twilio credentials', edit_user_registration_path %>
+  to get started.
+<% else %>
+  <p>
+    <%= link_to 'Sign in', new_user_session_path %>
+    or
+    <%= link_to 'sign up', new_user_registration_path %>
+    to get started.
+  </p>
+<% end %>
