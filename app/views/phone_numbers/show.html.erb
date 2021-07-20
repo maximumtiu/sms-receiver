@@ -2,9 +2,12 @@
 
 <h2>Messages</h2>
 
+Sent to <%= @phone_number.phone_number %>
+
 <table>
   <thead>
     <tr>
+      <th>SID</th>
       <th>From</th>
       <th>Body</th>
       <th colspan="3"></th>
@@ -14,6 +17,7 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
+        <td><%= message.sid %></td>
         <td><%= message.from %></td>
         <td><%= message.body %></td>
       </tr>

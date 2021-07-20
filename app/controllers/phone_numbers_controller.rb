@@ -8,8 +8,8 @@ class PhoneNumbersController < ApplicationController
 
   # GET /phone_numbers/+14044062468
   def show
-    phone_number = client.incoming_phone_numbers.list(phone_number: params[:id]).first
-    @messages = client.messages.list(to: phone_number.phone_number)
+    @phone_number = client.incoming_phone_numbers.list(phone_number: params[:id]).first
+    @messages = Message.where(to: @phone_number.phone_number).first(100)
   end
 
   # GET /phone_numbers/new
