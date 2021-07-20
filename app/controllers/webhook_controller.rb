@@ -12,9 +12,9 @@ class WebhookController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.json { head 200 }
+        format.xml { head 200 }
       else
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.xml { render json: @message.errors, status: :unprocessable_entity }
       end
     end
   end
