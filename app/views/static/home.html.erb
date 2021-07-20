@@ -2,7 +2,7 @@
 
 <p>Use this tool to purchase phone numbers and receive SMS via your Twilio account.</p>
 
-<% if current_user.twilio_account_sid %>
+<% if current_user&.twilio_account_sid %>
   <%= link_to 'Choose a phone number', phone_numbers_path %>
   to get started.
 <% elsif current_user %>

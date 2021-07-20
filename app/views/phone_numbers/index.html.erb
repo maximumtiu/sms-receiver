@@ -14,11 +14,9 @@
   <tbody>
     <% @phone_numbers.each do |phone_number| %>
       <tr>
-        <td><%= phone_number.e164_number %></td>
-        <td><%= phone_number.twilio_sid %></td>
-        <td><%= link_to 'Show', phone_number %></td>
-        <td><%= link_to 'Edit', edit_phone_number_path(phone_number) %></td>
-        <td><%= link_to 'Destroy', phone_number, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= phone_number.phone_number %></td>
+        <td><%= phone_number.sid %></td>
+        <td><%= link_to 'Show', phone_number_path(phone_number.phone_number) %></td>
       </tr>
     <% end %>
   </tbody>

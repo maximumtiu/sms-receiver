@@ -1,13 +1,15 @@
 class PhoneNumbersController < ApplicationController
-  before_action :set_phone_number, only: %i[ show edit update destroy ]
+  before_action :set_phone_number, only: %i[ edit update destroy ]
 
   # GET /phone_numbers or /phone_numbers.json
   def index
-    @phone_numbers = PhoneNumber.all
+    @phone_numbers = client.incoming_phone_numbers.list
   end
 
-  # GET /phone_numbers/1 or /phone_numbers/1.json
+  # GET /phone_numbers/+14044062468
   def show
+    phone_number = client.incoming_phone_numbers.list(phone_number: params[:id]).first
+    @messages = client.messages.list(to: phone_number.phone_number)
   end
 
   # GET /phone_numbers/new
@@ -57,6 +59,10 @@ class PhoneNumbersController < ApplicationController
   end
 
   private
+    def client
+      Twilio::REST::Client.new current_user.twilio_account_sid, current_user.twilio_auth_token
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_phone_number
       @phone_number = PhoneNumber.find(params[:id])

@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>E164 number:</strong>
-  <%= @phone_number.e164_number %>
-</p>
+<h2>Messages</h2>
 
-<p>
-  <strong>Twilio sid:</strong>
-  <%= @phone_number.twilio_sid %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_phone_number_path(@phone_number) %> |
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.from %></td>
+        <td><%= message.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Back', phone_numbers_path %>
