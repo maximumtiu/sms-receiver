@@ -1,4 +1,6 @@
 class WebhookController < ApplicationController
+  before_action :authorize_twilio, only: :twilio
+
   # inbound twilio sms
   def twilio
     @message= Message.new(
@@ -15,5 +17,11 @@ class WebhookController < ApplicationController
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  private
+
+  def authorize_twilio
+    head 403 unless User.find_by(twilio_account_sid: params['AccountSid'])
   end
 end
